@@ -20,6 +20,16 @@
 
   </section>
 
+  <!-- Mostrar tipo de sesión del usuario -->
+  <section class="content">
+    <div class="alert alert-info alert-dismissible">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+      <h4><i class="icon fa fa-user"></i> Información de sesión</h4>
+      Usuario: <strong><?php echo $_SESSION["nombre"]; ?></strong> | 
+      Perfil: <strong><?php echo $_SESSION["perfil"]; ?></strong>
+    </div>
+  </section>
+
   <section class="content">
 
     <div class="row">
