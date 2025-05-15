@@ -1,16 +1,12 @@
 <aside class="main-sidebar">
 
-	 <section class="sidebar">
+	<section class="sidebar">
 
 		<ul class="sidebar-menu">
 
-		<?php
+			<li <?php if(!isset($_GET["ruta"]) || $_GET["ruta"] == "inicio") echo 'class="active"'; ?>>
 
-		if($_SESSION["perfil"] == "Administrador"){
-
-			echo '<li class="active">
-
-				<a href="inicio">
+				<a href="index.php?ruta=inicio">
 
 					<i class="fa fa-home"></i>
 					<span>Inicio</span>
@@ -19,24 +15,20 @@
 
 			</li>
 
-			<li>
+			<li <?php if(isset($_GET["ruta"]) && $_GET["ruta"] == "usuarios") echo 'class="active"'; ?>>
 
-				<a href="usuarios">
+				<a href="index.php?ruta=usuarios">
 
-					<i class="fa fa-user"></i>
+					<i class="fa fa-users"></i>
 					<span>Usuarios</span>
 
 				</a>
 
-			</li>';
+			</li>
 
-		}
+			<li <?php if(isset($_GET["ruta"]) && $_GET["ruta"] == "categorias") echo 'class="active"'; ?>>
 
-		if($_SESSION["perfil"] == "Administrador" || $_SESSION["perfil"] == "Especial"){
-
-			echo '<li>
-
-				<a href="categorias">
+				<a href="index.php?ruta=categorias">
 
 					<i class="fa fa-th"></i>
 					<span>Categorías</span>
@@ -45,37 +37,29 @@
 
 			</li>
 
-			<li>
+			<li <?php if(isset($_GET["ruta"]) && $_GET["ruta"] == "productos") echo 'class="active"'; ?>>
 
-				<a href="productos">
+				<a href="index.php?ruta=productos">
 
 					<i class="fa fa-product-hunt"></i>
 					<span>Productos</span>
 
 				</a>
 
-			</li>';
+			</li>
 
-		}
+			<li <?php if(isset($_GET["ruta"]) && $_GET["ruta"] == "clientes") echo 'class="active"'; ?>>
 
-		if($_SESSION["perfil"] == "Administrador" || $_SESSION["perfil"] == "Vendedor"){
-
-			echo '<li>
-
-				<a href="clientes">
+				<a href="index.php?ruta=clientes">
 
 					<i class="fa fa-users"></i>
 					<span>Clientes</span>
 
 				</a>
 
-			</li>';
+			</li>
 
-		}
-
-		if($_SESSION["perfil"] == "Administrador" || $_SESSION["perfil"] == "Vendedor"){
-
-			echo '<li class="treeview">
+			<li class="treeview <?php if(isset($_GET["ruta"]) && ($_GET["ruta"] == "ventas" || $_GET["ruta"] == "crear-venta" || $_GET["ruta"] == "reportes")) echo 'active'; ?>">
 
 				<a href="#">
 
@@ -93,9 +77,9 @@
 
 				<ul class="treeview-menu">
 					
-					<li>
-
-						<a href="ventas">
+					<li <?php if(isset($_GET["ruta"]) && $_GET["ruta"] == "ventas") echo 'class="active"'; ?>>
+						
+						<a href="index.php?ruta=ventas">
 							
 							<i class="fa fa-circle-o"></i>
 							<span>Administrar ventas</span>
@@ -104,44 +88,34 @@
 
 					</li>
 
-					<li>
-
-						<a href="crear-venta">
+					<li <?php if(isset($_GET["ruta"]) && $_GET["ruta"] == "crear-venta") echo 'class="active"'; ?>>
+						
+						<a href="index.php?ruta=crear-venta">
 							
 							<i class="fa fa-circle-o"></i>
 							<span>Crear venta</span>
 
 						</a>
 
-					</li>';
-
-					if($_SESSION["perfil"] == "Administrador"){
-
-					echo '<li>
-
-						<a href="reportes">
+					</li>
+					
+					<li <?php if(isset($_GET["ruta"]) && $_GET["ruta"] == "reportes") echo 'class="active"'; ?>>
+						
+						<a href="index.php?ruta=reportes">
 							
 							<i class="fa fa-circle-o"></i>
 							<span>Reporte de ventas</span>
 
 						</a>
 
-					</li>';
+					</li>
 
-					}
+				</ul>
 
-				
-
-				echo '</ul>
-
-			</li>';
-
-		}
-
-		?>
+			</li>
 
 		</ul>
 
-	 </section>
+	</section>
 
 </aside>
