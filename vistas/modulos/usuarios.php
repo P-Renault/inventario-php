@@ -1,5 +1,7 @@
 <?php
 
+// Comentar temporalmente para acceder:
+/*
 if($_SESSION["perfil"] == "Especial" || $_SESSION["perfil"] == "Vendedor"){
 
   echo '<script>
@@ -11,24 +13,24 @@ if($_SESSION["perfil"] == "Especial" || $_SESSION["perfil"] == "Vendedor"){
   return;
 
 }
-
+*/
 ?>
 <div class="content-wrapper">
 
   <section class="content-header">
-    
+
     <h1>
-      
+
       Administrar usuarios
-    
+
     </h1>
 
     <ol class="breadcrumb">
-      
+
       <li><a href="inicio"><i class="fa fa-dashboard"></i> Inicio</a></li>
-      
+
       <li class="active">Administrar usuarios</li>
-    
+
     </ol>
 
   </section>
@@ -38,9 +40,9 @@ if($_SESSION["perfil"] == "Especial" || $_SESSION["perfil"] == "Vendedor"){
     <div class="box">
 
       <div class="box-header with-border">
-  
+
         <button class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarUsuario">
-          
+
           Agregar usuario
 
         </button>
@@ -48,86 +50,82 @@ if($_SESSION["perfil"] == "Especial" || $_SESSION["perfil"] == "Vendedor"){
       </div>
 
       <div class="box-body">
-        
-       <table class="table table-bordered table-striped dt-responsive tablas" width="100%">
-         
-        <thead>
-         
-         <tr>
-           
-           <th style="width:10px">#</th>
-           <th>Nombre</th>
-           <th>Usuario</th>
-           <th>Foto</th>
-           <th>Perfil</th>
-           <th>Estado</th>
-           <th>Último login</th>
-           <th>Acciones</th>
 
-         </tr> 
+        <table class="table table-bordered table-striped dt-responsive tablas" width="100%">
 
-        </thead>
+          <thead>
 
-        <tbody>
+            <tr>
 
-        <?php
+              <th style="width:10px">#</th>
+              <th>Nombre</th>
+              <th>Usuario</th>
+              <th>Foto</th>
+              <th>Perfil</th>
+              <th>Estado</th>
+              <th>Último login</th>
+              <th>Acciones</th>
 
-        $item = null;
-        $valor = null;
+            </tr>
 
-        $usuarios = ControladorUsuarios::ctrMostrarUsuarios($item, $valor);
+          </thead>
 
-       foreach ($usuarios as $key => $value){
-         
-          echo ' <tr>
-                  <td>'.($key+1).'</td>
-                  <td>'.$value["nombre"].'</td>
-                  <td>'.$value["usuario"].'</td>';
+          <tbody>
 
-                  if($value["foto"] != ""){
+            <?php
 
-                    echo '<td><img src="'.$value["foto"].'" class="img-thumbnail" width="40px"></td>';
+            $item = null;
+            $valor = null;
 
-                  }else{
+            $usuarios = ControladorUsuarios::ctrMostrarUsuarios($item, $valor);
 
-                    echo '<td><img src="vistas/img/usuarios/default/anonymous.png" class="img-thumbnail" width="40px"></td>';
+            foreach ($usuarios as $key => $value) {
 
-                  }
+              echo ' <tr>
+                      <td>' . ($key + 1) . '</td>
+                      <td>' . $value["nombre"] . '</td>
+                      <td>' . $value["usuario"] . '</td>';
 
-                  echo '<td>'.$value["perfil"].'</td>';
+              if ($value["foto"] != "") {
 
-                  if($value["estado"] != 0){
+                echo '<td><img src="' . $value["foto"] . '" class="img-thumbnail" width="40px"></td>';
+              } else {
 
-                    echo '<td><button class="btn btn-success btn-xs btnActivar" idUsuario="'.$value["id"].'" estadoUsuario="0">Activado</button></td>';
+                echo '<td><img src="vistas/img/usuarios/default/anonymous.png" class="img-thumbnail" width="40px"></td>';
+              }
 
-                  }else{
+              echo '<td>' . $value["perfil"] . '</td>';
 
-                    echo '<td><button class="btn btn-danger btn-xs btnActivar" idUsuario="'.$value["id"].'" estadoUsuario="1">Desactivado</button></td>';
+              if ($value["estado"] != 0) {
 
-                  }             
+                echo '<td><button class="btn btn-success btn-xs btnActivar" idUsuario="' . $value["id"] . '" estadoUsuario="0">Activado</button></td>';
+              } else {
 
-                  echo '<td>'.$value["ultimo_login"].'</td>
-                  <td>
+                echo '<td><button class="btn btn-danger btn-xs btnActivar" idUsuario="' . $value["id"] . '" estadoUsuario="1">Desactivado</button></td>';
+              }
 
-                    <div class="btn-group">
-                        
-                      <button class="btn btn-warning btnEditarUsuario" idUsuario="'.$value["id"].'" data-toggle="modal" data-target="#modalEditarUsuario"><i class="fa fa-pencil"></i></button>
+              echo '<td>' . $value["ultimo_login"] . '</td>
+                      <td>
 
-                      <button class="btn btn-danger btnEliminarUsuario" idUsuario="'.$value["id"].'" fotoUsuario="'.$value["foto"].'" usuario="'.$value["usuario"].'"><i class="fa fa-times"></i></button>
+                        <div class="btn-group">
+                            
+                          <button class="btn btn-warning btnEditarUsuario" idUsuario="' . $value["id"] . '" data-toggle="modal" data-target="#modalEditarUsuario"><i class="fa fa-pencil"></i></button>
 
-                    </div>  
+                          <button class="btn btn-danger btnEliminarUsuario" idUsuario="' . $value["id"] . '" fotoUsuario="' . $value["foto"] . '" usuario="' . $value["usuario"] . '"><i class="fa fa-times"></i></button>
 
-                  </td>
+                        </div>  
 
-                </tr>';
-        }
+                      </td>
+
+                    </tr>';
+            }
 
 
-        ?> 
+            ?>
 
-        </tbody>
+          </tbody>
 
-       </table>
+        </table>
 
       </div>
 
@@ -142,7 +140,7 @@ MODAL AGREGAR USUARIO
 ======================================-->
 
 <div id="modalAgregarUsuario" class="modal fade" role="dialog">
-  
+
   <div class="modal-dialog">
 
     <div class="modal-content">
@@ -170,12 +168,12 @@ MODAL AGREGAR USUARIO
           <div class="box-body">
 
             <!-- ENTRADA PARA EL NOMBRE -->
-            
+
             <div class="form-group">
-              
+
               <div class="input-group">
-              
-                <span class="input-group-addon"><i class="fa fa-user"></i></span> 
+
+                <span class="input-group-addon"><i class="fa fa-user"></i></span>
 
                 <input type="text" class="form-control input-lg" name="nuevoNombre" placeholder="Ingresar nombre" required>
 
@@ -185,13 +183,13 @@ MODAL AGREGAR USUARIO
 
             <!-- ENTRADA PARA EL USUARIO -->
 
-             <div class="form-group">
-              
-              <div class="input-group">
-              
-                <span class="input-group-addon"><i class="fa fa-key"></i></span> 
+            <div class="form-group">
 
-                <input type="text" class="form-control input-lg" name="nuevoUsuario" placeholder="Ingresar usuario" id="nuevoUsuario" required>
+              <div class="input-group">
+
+                <span class="input-group-addon"><i class="fa fa-key"></i></span>
+
+                <input type="text" class="form-control input-lg" name="nuevoUsuario" placeholder="Ingresar usuario" required>
 
               </div>
 
@@ -199,11 +197,11 @@ MODAL AGREGAR USUARIO
 
             <!-- ENTRADA PARA LA CONTRASEÑA -->
 
-             <div class="form-group">
-              
+            <div class="form-group">
+
               <div class="input-group">
-              
-                <span class="input-group-addon"><i class="fa fa-lock"></i></span> 
+
+                <span class="input-group-addon"><i class="fa fa-lock"></i></span>
 
                 <input type="password" class="form-control input-lg" name="nuevoPassword" placeholder="Ingresar contraseña" required>
 
@@ -214,13 +212,13 @@ MODAL AGREGAR USUARIO
             <!-- ENTRADA PARA SELECCIONAR SU PERFIL -->
 
             <div class="form-group">
-              
+
               <div class="input-group">
-              
-                <span class="input-group-addon"><i class="fa fa-users"></i></span> 
+
+                <span class="input-group-addon"><i class="fa fa-users"></i></span>
 
                 <select class="form-control input-lg" name="nuevoPerfil">
-                  
+
                   <option value="">Selecionar perfil</option>
 
                   <option value="Administrador">Administrador</option>
@@ -237,8 +235,8 @@ MODAL AGREGAR USUARIO
 
             <!-- ENTRADA PARA SUBIR FOTO -->
 
-             <div class="form-group">
-              
+            <div class="form-group">
+
               <div class="panel">SUBIR FOTO</div>
 
               <input type="file" class="nuevaFoto" name="nuevaFoto">
@@ -264,13 +262,6 @@ MODAL AGREGAR USUARIO
           <button type="submit" class="btn btn-primary">Guardar usuario</button>
 
         </div>
-
-        <?php
-
-          $crearUsuario = new ControladorUsuarios();
-          $crearUsuario -> ctrCrearUsuario();
-
-        ?>
 
       </form>
 
@@ -327,8 +318,8 @@ MODAL EDITAR USUARIO
             </div>
 
             <!-- ENTRADA PARA EL USUARIO -->
-
-             <div class="form-group">
+            
+            <div class="form-group">
               
               <div class="input-group">
               
@@ -342,7 +333,7 @@ MODAL EDITAR USUARIO
 
             <!-- ENTRADA PARA LA CONTRASEÑA -->
 
-             <div class="form-group">
+            <div class="form-group">
               
               <div class="input-group">
               
@@ -382,7 +373,7 @@ MODAL EDITAR USUARIO
 
             <!-- ENTRADA PARA SUBIR FOTO -->
 
-             <div class="form-group">
+            <div class="form-group">
               
               <div class="panel">SUBIR FOTO</div>
 
@@ -390,7 +381,7 @@ MODAL EDITAR USUARIO
 
               <p class="help-block">Peso máximo de la foto 2MB</p>
 
-              <img src="vistas/img/usuarios/default/anonymous.png" class="img-thumbnail previsualizarEditar" width="100px">
+              <img src="vistas/img/usuarios/default/anonymous.png" class="img-thumbnail previsualizar" width="100px">
 
               <input type="hidden" name="fotoActual" id="fotoActual">
 
@@ -414,10 +405,11 @@ MODAL EDITAR USUARIO
 
      <?php
 
-          $editarUsuario = new ControladorUsuarios();
-          $editarUsuario -> ctrEditarUsuario();
+        $editarUsuario = new ControladorUsuarios();
+        $editarUsuario -> ctrEditarUsuario();
 
-        ?> 
+     ?>
+
 
       </form>
 
@@ -432,6 +424,4 @@ MODAL EDITAR USUARIO
   $borrarUsuario = new ControladorUsuarios();
   $borrarUsuario -> ctrBorrarUsuario();
 
-?> 
-
-
+?>

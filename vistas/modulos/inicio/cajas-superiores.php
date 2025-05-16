@@ -1,10 +1,17 @@
 <?php
 
+// Inicializar las ventas usando el controlador
 $item = null;
 $valor = null;
 $orden = "id";
 
-$ventas = ControladorVentas::ctrSumaTotalVentas();
+$ventasController = new ControladorVentas();
+$ventas = $ventasController->ctrSumaTotalVentas();
+
+// Asegurarse de que $ventas no sea null antes de usarla
+if($ventas == null){
+  $ventas = array("total" => 0); // Valor predeterminado si no hay ventas
+}
 
 $categorias = ControladorCategorias::ctrMostrarCategorias($item, $valor);
 $totalCategorias = count($categorias);
@@ -17,7 +24,7 @@ $totalProductos = count($productos);
 
 ?>
 
-
+<!-- CAJAS SUPERIORES -->
 
 <div class="col-lg-3 col-xs-6">
 

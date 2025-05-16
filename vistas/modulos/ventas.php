@@ -138,16 +138,24 @@ if($xml){
 
                   $respuestaCliente = ControladorClientes::ctrMostrarClientes($itemCliente, $valorCliente);
 
-                  echo '<td>'.$respuestaCliente["nombre"].'</td>';
+                  if(is_array($respuestaCliente) && isset($respuestaCliente["nombre"])){
+                    echo '<td>'.$respuestaCliente["nombre"].'</td>';
+                  } else {
+                    echo '<td>Cliente no encontrado</td>';
+                  }
 
                   $itemUsuario = "id";
                   $valorUsuario = $value["id_vendedor"];
 
                   $respuestaUsuario = ControladorUsuarios::ctrMostrarUsuarios($itemUsuario, $valorUsuario);
 
-                  echo '<td>'.$respuestaUsuario["nombre"].'</td>
+                  if(is_array($respuestaUsuario) && isset($respuestaUsuario["nombre"])){
+                    echo '<td>'.$respuestaUsuario["nombre"].'</td>';
+                  } else {
+                    echo '<td>Vendedor no encontrado</td>';
+                  }
 
-                  <td>'.$value["metodo_pago"].'</td>
+                  echo '<td>'.$value["metodo_pago"].'</td>
 
                   <td>$ '.number_format($value["neto"],2).'</td>
 

@@ -1,16 +1,18 @@
 <?php
 
-class ControladorCategorias{
+class ControladorCategorias
+{
 
 	/*=============================================
 	CREAR CATEGORIAS
 	=============================================*/
 
-	static public function ctrCrearCategoria(){
+	static public function ctrCrearCategoria()
+	{
 
-		if(isset($_POST["nuevaCategoria"])){
+		if (isset($_POST["nuevaCategoria"])) {
 
-			if(preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["nuevaCategoria"])){
+			if (preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["nuevaCategoria"])) {
 
 				$tabla = "categorias";
 
@@ -18,9 +20,9 @@ class ControladorCategorias{
 
 				$respuesta = ModeloCategorias::mdlIngresarCategoria($tabla, $datos);
 
-				if($respuesta == "ok"){
+				if ($respuesta == "ok") {
 
-					echo'<script>
+					echo '<script>
 
 					swal({
 						  type: "success",
@@ -36,13 +38,10 @@ class ControladorCategorias{
 								})
 
 					</script>';
-
 				}
+			} else {
 
-
-			}else{
-
-				echo'<script>
+				echo '<script>
 
 					swal({
 						  type: "error",
@@ -58,47 +57,47 @@ class ControladorCategorias{
 						})
 
 			  	</script>';
-
 			}
-
 		}
-
 	}
 
 	/*=============================================
 	MOSTRAR CATEGORIAS
 	=============================================*/
 
-	static public function ctrMostrarCategorias($item, $valor){
+	static public function ctrMostrarCategorias($item, $valor)
+	{
 
 		$tabla = "categorias";
 
 		$respuesta = ModeloCategorias::mdlMostrarCategorias($tabla, $item, $valor);
 
 		return $respuesta;
-	
 	}
 
 	/*=============================================
 	EDITAR CATEGORIA
 	=============================================*/
 
-	static public function ctrEditarCategoria(){
+	static public function ctrEditarCategoria()
+	{
 
-		if(isset($_POST["editarCategoria"])){
+		if (isset($_POST["editarCategoria"])) {
 
-			if(preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["editarCategoria"])){
+			if (preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["editarCategoria"])) {
 
 				$tabla = "categorias";
 
-				$datos = array("categoria"=>$_POST["editarCategoria"],
-							   "id"=>$_POST["idCategoria"]);
+				$datos = array(
+					"categoria" => $_POST["editarCategoria"],
+					"id" => $_POST["idCategoria"]
+				);
 
 				$respuesta = ModeloCategorias::mdlEditarCategoria($tabla, $datos);
 
-				if($respuesta == "ok"){
+				if ($respuesta == "ok") {
 
-					echo'<script>
+					echo '<script>
 
 					swal({
 						  type: "success",
@@ -114,13 +113,10 @@ class ControladorCategorias{
 								})
 
 					</script>';
-
 				}
+			} else {
 
-
-			}else{
-
-				echo'<script>
+				echo '<script>
 
 					swal({
 						  type: "error",
@@ -136,29 +132,27 @@ class ControladorCategorias{
 						})
 
 			  	</script>';
-
 			}
-
 		}
-
 	}
 
 	/*=============================================
 	BORRAR CATEGORIA
 	=============================================*/
 
-	static public function ctrBorrarCategoria(){
+	static public function ctrBorrarCategoria()
+	{
 
-		if(isset($_GET["idCategoria"])){
+		if (isset($_GET["idCategoria"])) {
 
-			$tabla ="Categorias";
+			$tabla = "Categorias";
 			$datos = $_GET["idCategoria"];
 
 			$respuesta = ModeloCategorias::mdlBorrarCategoria($tabla, $datos);
 
-			if($respuesta == "ok"){
+			if ($respuesta == "ok") {
 
-				echo'<script>
+				echo '<script>
 
 					swal({
 						  type: "success",
@@ -176,6 +170,5 @@ class ControladorCategorias{
 					</script>';
 			}
 		}
-		
 	}
 }
